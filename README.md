@@ -1,7 +1,7 @@
 
 > 인앱 결제 `github` 업로드
 >> 1. 원스토어 인앱결제SDK와 가이드를 깃허브에 동시 업데이트 합니다. 
->> 1. [원스토어 개발자센터](http://dev.onestore.co.kr/devpoc/reference/view/Tools_IAP)를 통해서도 가이드를 확인할 수 있습니다. 
+>> 1. [원스토어 개발자센터](http://dev.onestore.co.kr/devpoc/reference/view/Tools_IAP)를 통해서도 동일한 내용을 확인할 수 있습니다. 
 
 
 # ONE스토어 인앱결제란?
@@ -15,6 +15,12 @@ ONE스토어 인앱결제(이하 IAP)는 ONE스토어 이용자들이 앱 내에
 ![enter image description here](https://lh3.googleusercontent.com/-3cXqpbmAXrI/V4Sxzil98qI/AAAAAAAAe5A/E7b5TIV55WIKkduLAP8qWBYTtnBmie_4gCKgB/s0/iapOverview.png "iapOverview.png")
 
 IAP 모듈은 IAP SDK(In-App Purchase Software Development Kit)라는 java 개발 라이브러리 형태로 제공된다. 개발사 앱에 SDK를 적용한 후 인앱결제 관련 함수를 호출하면 IAP서버로 요청이 전달된다. IAP 서버는 구매 요청에 대한 결과를 JSON 형태의 응답 데이터를 생성하여 개발자 앱으로 전송한다. 
+
+
+# 개발자 가이드 
+
+- [위키 페이지](https://github.com/ONE-store/inapp-sdk/wiki)
+- [개발자센터](http://dev.onestore.co.kr/devpoc/reference/view/Tools_IAP)
 
 
 # 권장 개발 환경
