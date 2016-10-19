@@ -1,8 +1,9 @@
 package com.onestore.iap.unity;
 
-import android.util.Log;
-
 import com.skplanet.dodo.ReceiptVerificationTask;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by layn01 on 9/12/16. <br><br>
@@ -12,8 +13,11 @@ import com.skplanet.dodo.ReceiptVerificationTask;
  */
 class ReceiptVerificationCallbackAdapter extends AbsCallbackAdapter implements ReceiptVerificationTask.RequestCallback {
 
+    static private final Set<ReceiptVerificationCallbackAdapter> callbackRefHolder = new HashSet<>();
+
     ReceiptVerificationCallbackAdapter(String className, String successCallbackMethodName, String failCallbackMethodName) {
         super(className, successCallbackMethodName, failCallbackMethodName);
+        callbackRefHolder.add(this);
     }
 
     @Override
@@ -23,6 +27,7 @@ class ReceiptVerificationCallbackAdapter extends AbsCallbackAdapter implements R
         //Log.d("only1", "code >>> " + code);
         //
         dispatchFailCallback(MessageMaker.toReceiptVerificationErrorMessage(String.valueOf(code)));
+        callbackRefHolder.remove(this);
     }
 
     @Override
@@ -33,5 +38,6 @@ class ReceiptVerificationCallbackAdapter extends AbsCallbackAdapter implements R
         //
         // 응답의 경우, Json형태이므로 그대로 보내자
         dispatchSuccessCallback(result);
+        callbackRefHolder.remove(this);
     }
 }
