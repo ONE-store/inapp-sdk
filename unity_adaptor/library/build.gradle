@@ -32,8 +32,9 @@ android {
 }
 
 dependencies {
-    compile files('libs/iap_plugin_v16.02.00_20161021.jar')
-    compile files('libs/classes.jar')
+    //compile files('libs/iap_plugin_v16.02.00_20161021.jar')
+    //compile files('libs/classes.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 
