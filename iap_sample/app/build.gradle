@@ -38,6 +38,7 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:23.1.1'
-    compile files('libs/iap_plugin_v16.02.00_20161010.jar')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile files('libs/iap_plugin_v16.02.00_20161021.jar')
     //compile(name:'iap_plugin_v16.01.00', ext:'aar')
 }
