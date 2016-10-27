@@ -1,4 +1,4 @@
-package com.skplanet.dev.guide;
+package com.onestore.dev.guide.iapsample;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

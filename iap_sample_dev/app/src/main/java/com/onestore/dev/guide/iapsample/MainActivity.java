@@ -1,4 +1,4 @@
-package com.skplanet.dev.guide;
+package com.onestore.dev.guide.iapsample;
 
 import android.app.Activity;
 import android.content.Intent;

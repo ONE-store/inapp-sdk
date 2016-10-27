@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.skplanet.dev.guide.MainActivity">
+    tools:context="com.onestore.dev.guide.iapsample.MainActivity">
 
     <Button
         android:id="@+id/type1"

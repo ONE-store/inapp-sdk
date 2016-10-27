@@ -1,5 +1,5 @@
 
-package com.skplanet.dev.guide;
+package com.onestore.dev.guide.iapsample;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ import com.skplanet.dodo.pdu.Response;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-public class ExplicitCommandInBackgroundFragment extends Fragment implements View.OnClickListener {
+public class ExplicitCommandFragment extends Fragment implements View.OnClickListener {
     private Spinner mMethodSpinner;
     private Spinner mActionSpinner;
 
@@ -128,8 +128,7 @@ public class ExplicitCommandInBackgroundFragment extends Fragment implements Vie
     }
 
     private InputFilter filterAlphaNum = new InputFilter() {
-        public CharSequence filter(CharSequence source, int start, int end,
-                Spanned dest, int dstart, int dend) {
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
             Pattern ps = Pattern.compile("^[a-zA-Z0-9,]+$");
             if (!ps.matcher(source).matches()) {
                 return "";
@@ -158,16 +157,15 @@ public class ExplicitCommandInBackgroundFragment extends Fragment implements Vie
         }
     }
 
-
     private String requestCommand() {
         if (Command.request_product_info.method().equals(mMethodParam)) {
-            return mPlugin.sendCommandProductInfo(mAbsRequestCallback, ProcessType.BACKGROUND_ONLY, mAppidParam);
+            return mPlugin.sendCommandProductInfo(mAbsRequestCallback, ProcessType.FOREGROUND_IF_NEEDED, mAppidParam);
         } else if (Command.request_purchase_history.method().equals(mMethodParam)) {
-            return mPlugin.sendCommandPurchaseHistory(mAbsRequestCallback, ProcessType.BACKGROUND_ONLY, mAppidParam, mProductIdsParam);
+            return mPlugin.sendCommandPurchaseHistory(mAbsRequestCallback, ProcessType.FOREGROUND_IF_NEEDED, mAppidParam, mProductIdsParam);
         } else if (Command.change_product_properties.method().equals(mMethodParam)) {
-            return mPlugin.sendCommandChangeProductProperties(mAbsRequestCallback, ProcessType.BACKGROUND_ONLY, mAppidParam, mActionParam, mProductIdsParam);
+            return mPlugin.sendCommandChangeProductProperties(mAbsRequestCallback, ProcessType.FOREGROUND_IF_NEEDED, mAppidParam, mActionParam, mProductIdsParam);
         } else if (Command.check_purchasability.method().equals(mMethodParam)) {
-            return mPlugin.sendCommandCheckPurchasability(mAbsRequestCallback, ProcessType.BACKGROUND_ONLY, mAppidParam, mProductIdsParam);
+            return mPlugin.sendCommandCheckPurchasability(mAbsRequestCallback, ProcessType.FOREGROUND_IF_NEEDED, mAppidParam, mProductIdsParam);
         }
         return null;
     }

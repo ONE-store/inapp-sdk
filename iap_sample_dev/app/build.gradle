@@ -12,7 +12,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId "com.skplanet.dev.guide"
+        applicationId "com.onestore.dev.guide.iapsample"
         minSdkVersion 9
         targetSdkVersion 23
         compileOptions {

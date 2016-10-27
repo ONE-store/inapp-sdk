@@ -1,5 +1,5 @@
 
-package com.skplanet.dev.guide;
+package com.onestore.dev.guide.iapsample;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.skplanet.dodo.IapPlugin;
 import com.skplanet.dodo.IapResponse;
-import com.skplanet.dodo.ProcessType;
 import com.skplanet.dodo.helper.CommandBuilder;
 import com.skplanet.dodo.helper.ConverterFactory;
 import com.skplanet.dodo.pdu.Command;
@@ -30,21 +29,21 @@ import com.skplanet.dodo.pdu.Response;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-public class ImplicitCommandInBackgroundFragment extends Fragment implements View.OnClickListener {
+public class ImplicitCommandFragment extends Fragment implements View.OnClickListener {
     private Spinner mMethodSpinner;
     private Spinner mActionSpinner;
 
     private EditText mAid;
     private EditText mPid;
     private TextView mLog;
-
+    
     private Button mExecute;
     private LinearLayout mActionLayout;
 
     private String mMethodParam;
     private String mActionParam;
-    private String mAppid;
-    private String[] mProductIds;
+    private String mAppidParam;
+    private String[] mProductIdsParam;
 
     private CommandBuilder mBuilder = new CommandBuilder();
     private IapPlugin mPlugin;
@@ -158,6 +157,7 @@ public class ImplicitCommandInBackgroundFragment extends Fragment implements Vie
                         StringBuffer sb = new StringBuffer("onResponse() \n");
                         sb.append("From:" + data.getContentToString()).append("\n").append("To:" + response.toString());
                         mLog.setText(sb.toString());
+
                     }
 
                     @Override
@@ -166,7 +166,7 @@ public class ImplicitCommandInBackgroundFragment extends Fragment implements Vie
                         String msg = "onError() identifier:" + reqid + " code:" + errcode + " msg:" + errmsg;
                         mLog.setText(msg);
                     }
-                }, ProcessType.BACKGROUND_ONLY);
+                });
 
         if (req == null) {
             // TODO request failure
@@ -186,29 +186,29 @@ public class ImplicitCommandInBackgroundFragment extends Fragment implements Vie
 //        return "{\"method\":\"request_product_info\",\"param\":{\"appid\":\"OA00367358\",\"product_id\":[\"0901220941\",\"0901215964\"]}}";
         
         if (Command.request_product_info.method().equals(mMethodParam)) {
-            return mBuilder.requestProductInfo(mAppid);
+            return mBuilder.requestProductInfo(mAppidParam);
         }
         if (Command.request_purchase_history.method().equals(mMethodParam)) {
-            return mBuilder.requestPurchaseHistory(mAppid, mProductIds);
+            return mBuilder.requestPurchaseHistory(mAppidParam, mProductIdsParam);
         }
         if (Command.change_product_properties.method().equals(mMethodParam)) {
-            return mBuilder.changeProductProperties(mAppid, mActionParam,
-                    mProductIds);
+            return mBuilder.changeProductProperties(mAppidParam, mActionParam,
+                    mProductIdsParam);
         }
         if (Command.check_purchasability.method().equals(mMethodParam)) {
-            return mBuilder.checkPurchasability(mAppid, mProductIds);
+            return mBuilder.checkPurchasability(mAppidParam, mProductIdsParam);
         }
         if (Command.auth_item.method().equals(mMethodParam)) {
-            return mBuilder.authItem(mAppid, mProductIds);
+            return mBuilder.authItem(mAppidParam, mProductIdsParam);
         }
         if (Command.whole_auth_item.method().equals(mMethodParam)) {
-            return mBuilder.wholeAuthItem(mAppid);
+            return mBuilder.wholeAuthItem(mAppidParam);
         }
         if (Command.item_use.method().equals(mMethodParam)) {
-            return mBuilder.itemUse(mAppid, mProductIds);
+            return mBuilder.itemUse(mAppidParam, mProductIdsParam);
         }
         if (Command.monthly_withdraw.method().equals(mMethodParam)) {
-            return mBuilder.monthlyWithdraw(mAppid, mProductIds);
+            return mBuilder.monthlyWithdraw(mAppidParam, mProductIdsParam);
         }
         return null;
     }
@@ -224,13 +224,13 @@ public class ImplicitCommandInBackgroundFragment extends Fragment implements Vie
         }
 
         if (TextUtils.isEmpty(ids)) {
-            mProductIds = null;
+            mProductIdsParam = null;
         } else {
             Pattern p = Pattern.compile("[,]+");
-            mProductIds = p.split(ids);
+            mProductIdsParam = p.split(ids);
         }
     
-        mAppid = app.toUpperCase(Locale.getDefault());
+        mAppidParam = app.toUpperCase(Locale.getDefault());
         return true;
     }
 }

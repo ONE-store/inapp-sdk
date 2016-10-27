@@ -1,5 +1,5 @@
 
-package com.skplanet.dev.guide;
+package com.onestore.dev.guide.iapsample;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.skplanet.dodo.IapPlugin;
 import com.skplanet.dodo.IapResponse;
+import com.skplanet.dodo.ProcessType;
 import com.skplanet.dodo.helper.CommandBuilder;
 import com.skplanet.dodo.helper.ConverterFactory;
 import com.skplanet.dodo.pdu.Command;
@@ -29,21 +30,21 @@ import com.skplanet.dodo.pdu.Response;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-public class ImplicitCommandFragment extends Fragment implements View.OnClickListener {
+public class ImplicitCommandInBackgroundFragment extends Fragment implements View.OnClickListener {
     private Spinner mMethodSpinner;
     private Spinner mActionSpinner;
 
     private EditText mAid;
     private EditText mPid;
     private TextView mLog;
-    
+
     private Button mExecute;
     private LinearLayout mActionLayout;
 
     private String mMethodParam;
     private String mActionParam;
-    private String mAppidParam;
-    private String[] mProductIdsParam;
+    private String mAppid;
+    private String[] mProductIds;
 
     private CommandBuilder mBuilder = new CommandBuilder();
     private IapPlugin mPlugin;
@@ -157,7 +158,6 @@ public class ImplicitCommandFragment extends Fragment implements View.OnClickLis
                         StringBuffer sb = new StringBuffer("onResponse() \n");
                         sb.append("From:" + data.getContentToString()).append("\n").append("To:" + response.toString());
                         mLog.setText(sb.toString());
-
                     }
 
                     @Override
@@ -166,7 +166,7 @@ public class ImplicitCommandFragment extends Fragment implements View.OnClickLis
                         String msg = "onError() identifier:" + reqid + " code:" + errcode + " msg:" + errmsg;
                         mLog.setText(msg);
                     }
-                });
+                }, ProcessType.BACKGROUND_ONLY);
 
         if (req == null) {
             // TODO request failure
@@ -186,29 +186,29 @@ public class ImplicitCommandFragment extends Fragment implements View.OnClickLis
 //        return "{\"method\":\"request_product_info\",\"param\":{\"appid\":\"OA00367358\",\"product_id\":[\"0901220941\",\"0901215964\"]}}";
         
         if (Command.request_product_info.method().equals(mMethodParam)) {
-            return mBuilder.requestProductInfo(mAppidParam);
+            return mBuilder.requestProductInfo(mAppid);
         }
         if (Command.request_purchase_history.method().equals(mMethodParam)) {
-            return mBuilder.requestPurchaseHistory(mAppidParam, mProductIdsParam);
+            return mBuilder.requestPurchaseHistory(mAppid, mProductIds);
         }
         if (Command.change_product_properties.method().equals(mMethodParam)) {
-            return mBuilder.changeProductProperties(mAppidParam, mActionParam,
-                    mProductIdsParam);
+            return mBuilder.changeProductProperties(mAppid, mActionParam,
+                    mProductIds);
         }
         if (Command.check_purchasability.method().equals(mMethodParam)) {
-            return mBuilder.checkPurchasability(mAppidParam, mProductIdsParam);
+            return mBuilder.checkPurchasability(mAppid, mProductIds);
         }
         if (Command.auth_item.method().equals(mMethodParam)) {
-            return mBuilder.authItem(mAppidParam, mProductIdsParam);
+            return mBuilder.authItem(mAppid, mProductIds);
         }
         if (Command.whole_auth_item.method().equals(mMethodParam)) {
-            return mBuilder.wholeAuthItem(mAppidParam);
+            return mBuilder.wholeAuthItem(mAppid);
         }
         if (Command.item_use.method().equals(mMethodParam)) {
-            return mBuilder.itemUse(mAppidParam, mProductIdsParam);
+            return mBuilder.itemUse(mAppid, mProductIds);
         }
         if (Command.monthly_withdraw.method().equals(mMethodParam)) {
-            return mBuilder.monthlyWithdraw(mAppidParam, mProductIdsParam);
+            return mBuilder.monthlyWithdraw(mAppid, mProductIds);
         }
         return null;
     }
@@ -224,13 +224,13 @@ public class ImplicitCommandFragment extends Fragment implements View.OnClickLis
         }
 
         if (TextUtils.isEmpty(ids)) {
-            mProductIdsParam = null;
+            mProductIds = null;
         } else {
             Pattern p = Pattern.compile("[,]+");
-            mProductIdsParam = p.split(ids);
+            mProductIds = p.split(ids);
         }
     
-        mAppidParam = app.toUpperCase(Locale.getDefault());
+        mAppid = app.toUpperCase(Locale.getDefault());
         return true;
     }
 }
