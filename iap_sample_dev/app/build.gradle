@@ -42,3 +42,18 @@ dependencies {
     //compile files('libs/iap_plugin_v16.02.00_20161021.jar')
     //compile(name:'iap_plugin_v16.01.00', ext:'aar')
 }
+
+task convertReleaseName << {
+    String apkPath = getProjectDir().absolutePath + "/build/outputs/apk/"
+    File src = new File(apkPath + "app-release.apk")
+    File dst = new File(apkPath + "inapp_sample_D_v16.03.00.apk")
+    src.renameTo(dst)
+}
+
+//////////////////////////////////////////////////////////
+//
+// 배포용 테스트앱을 만들기 위한 스크립트
+//
+//////////////////////////////////////////////////////////
+convertReleaseName.mustRunAfter assembleRelease
+task buildTestApp(dependsOn: [assembleRelease, convertReleaseName])
