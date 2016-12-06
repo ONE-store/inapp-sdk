@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "150C9126661D2368073DEAE1CE4361D6186EE06C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "150C9126661D2368073DEAE1CE4361D6186EE06C" : 0,
+    "6EBDBC6EEC91CB4D75AE91FE9EFC759886F9D941" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D9132400-CDDC-4577-B01D-2852ED71B9DB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "150C9126661D2368073DEAE1CE4361D6186EE06C" : "onestore_iap_plugin\/",
+    "6EBDBC6EEC91CB4D75AE91FE9EFC759886F9D941" : "..\/UnrealEngine"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "IapSampleApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "engine\/unreal\/unreal_sample\/IapSampleApp.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/skvalley.com:29418\/onestore_iap_plugin",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "150C9126661D2368073DEAE1CE4361D6186EE06C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/EpicGames\/UnrealEngine.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6EBDBC6EEC91CB4D75AE91FE9EFC759886F9D941"
+    }
+  ]
+}

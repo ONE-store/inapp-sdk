@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"      name = "Engine">
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UE4.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"      name = "Games">
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/IapSampleApp.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"      name = "Programs">
+      <Group
+         location = "container:"      name = "Automation">
+      </Group>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/BlankProgram.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/BuildPatchTool.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/CrashReportClient.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/MinidumpDiagnostics.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/CrossCompilerTool.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealLaunchDaemon.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/DsymExporter.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/ShaderCacheTool.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UE4EditorServices.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealAtoS.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/ParallelExecutor.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/ShaderCompileWorker.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/SlateViewer.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/SymbolDebugger.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/TestPAL.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealCEFSubProcess.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealCodeAnalyzer.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealFileServer.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealFrontend.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealHeaderTool.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealLightmass.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealPak.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/UnrealVersionSelector.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Intermediate/ProjectFiles/BootstrapPackagedGame.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
