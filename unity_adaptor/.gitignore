@@ -3,6 +3,5 @@
 
 .gradle
 .idea
-app/build
 build
-
+library/build

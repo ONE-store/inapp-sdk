@@ -32,9 +32,8 @@ android {
 }
 
 dependencies {
-    //compile files('libs/iap_plugin_v16.02.00_20161021.jar')
-    //compile files('libs/classes.jar')
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/iap_plugin_v16.03.00_20161123.jar')
+    compile files('libs/classes.jar')
 }
 
 
@@ -120,4 +119,4 @@ changeJarLibName.mustRunAfter unzip
  * Relase Build Task
  *
  */
-task buildUnityAdaptorJar(dependsOn: [assembleRelease, changeZip, unzip, changeJarLibName])
+task buildUnityBridgeJar(dependsOn: [assembleRelease, changeZip, unzip, changeJarLibName])

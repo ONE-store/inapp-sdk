@@ -1,10 +1,9 @@
 package com.onestore.iap.unity;
 
+import android.util.Log;
+
 import com.skplanet.dodo.IapPlugin;
 import com.skplanet.dodo.IapResponse;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by layn01 on 9/12/16. <br><br>
@@ -14,11 +13,8 @@ import java.util.Set;
  */
 class RequestCallbackAdapter extends AbsCallbackAdapter implements IapPlugin.RequestCallback {
 
-    static private final Set<RequestCallbackAdapter> callbackRefHolder = new HashSet<>();
-
     RequestCallbackAdapter(String className, String successCallbackMethodName, String failCallbackMethodName) {
         super(className, successCallbackMethodName, failCallbackMethodName);
-        callbackRefHolder.add(this);
     }
 
     @Override
@@ -30,7 +26,6 @@ class RequestCallbackAdapter extends AbsCallbackAdapter implements IapPlugin.Req
         //Log.d("only1", "errmsg : " + errmsg);
         //
         dispatchFailCallback(MessageMaker.toPaymentErrorMessage(rid, errcode, errmsg));
-        callbackRefHolder.remove(this);
     }
 
     @Override
@@ -41,6 +36,5 @@ class RequestCallbackAdapter extends AbsCallbackAdapter implements IapPlugin.Req
         //
         // 응답의 경우, Json형태이므로 그대로 보내자
         dispatchSuccessCallback(iapResponse.getContentToString());
-        callbackRefHolder.remove(this);
     }
 }
