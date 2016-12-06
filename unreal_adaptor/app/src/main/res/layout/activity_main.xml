@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="onestore.com.iapadaptorforue4.MainActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_request_purchase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Request Purchase"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_cmd_receipt_verify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="[Cmd] Receipt Verify"
+                android:textSize="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cmd_purchase_history"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:text="[Cmd] Purchase History"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btn_cmd_purchase_history_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="BG"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cmd_product_info"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:text="[Cmd] Product Info"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btn_cmd_product_info_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="BG"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cmd_check_purchasability"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:text="[Cmd] Check Purchasability"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btn_cmd_check_purchasability_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="BG"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cmd_change_product_withdraw_subscription"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:text="[Cmd] Change Product (정액해지)"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btn_cmd_change_product_withdraw_subscription_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="BG"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_cmd_change_product_descent_points"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:text="[Cmd] Change Product (포인트 차감)"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btn_cmd_change_product_descent_points_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="BG"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
