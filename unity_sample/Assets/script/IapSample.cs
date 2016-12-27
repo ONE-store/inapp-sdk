@@ -18,8 +18,23 @@ public class IapSample : MonoBehaviour {
 	private AndroidJavaObject currentActivity = null;
 	private AndroidJavaObject iapRequestAdapter = null;
 
+	/// <summary>
+	/// One Store에 등록된 앱 아이디.
+	/// 반드시 자신의 앱 아이디로 사용권장.
+	/// </summary>
+	private const string appId = "OA00679020";
+
 	void Start () 
 	{
+		//-----------------
+		// 예외처리
+		//-----------------
+		//클래스 명과 게임 오브젝트 명이 다르면 Android에서 보내는 콜백을 받을 수 없습니다.
+		string className = this.GetType().Name;
+		string gameObjectName = gameObject.name;
+		if(className != gameObjectName) 
+			Debug.LogError("클래스 명과 게임 오브젝트 명이 다릅니다. 반드시 동일하게 입력하세요.");
+
 		//-----------------
 		// Initialize
 		//-----------------
@@ -89,8 +104,8 @@ public class IapSample : MonoBehaviour {
 		// (3) productIds
 		// ----------------------------------
 		string[] productIds = {"0910024112"};
-		iapRequestAdapter.Call ("requestPurchaseHistory", false, "OA00679020", productIds);
-		//iapRequestAdapter.Call ("requestPurchaseHistory", true, "OA00679020", productIds); // UI노출 없이 Background로만 진행
+		iapRequestAdapter.Call ("requestPurchaseHistory", false, appId, productIds);
+		//iapRequestAdapter.Call ("requestPurchaseHistory", true, appId, productIds); // UI노출 없이 Background로만 진행
 	}
 
 	public void RequestProductInfo() 
@@ -103,8 +118,8 @@ public class IapSample : MonoBehaviour {
 		// (1) 필요시에는 UI 노출
 		// (2) appId
 		// ----------------------------------
-		iapRequestAdapter.Call ("requestProductInfo", false, "OA00679020");
-		//iapRequestAdapter.Call ("requestProductInfo", true, "OA00679020"); // UI노출 없이 Background로만 진행
+		iapRequestAdapter.Call ("requestProductInfo", false, appId);
+		//iapRequestAdapter.Call ("requestProductInfo", true, appId); // UI노출 없이 Background로만 진행
 	}
 
 	public void RequestCheckPurchasability() 
@@ -119,8 +134,8 @@ public class IapSample : MonoBehaviour {
 		// (3) productIds
 		// ----------------------------------
 		string[] productIds = {"0910024112"};
-		iapRequestAdapter.Call ("requestCheckPurchasability", false, "OA00679020", productIds);
-		//iapRequestAdapter.Call ("requestCheckPurchasability", true, "OA00679020", productIds); // UI노출 없이 Background로만 진행
+		iapRequestAdapter.Call ("requestCheckPurchasability", false, appId, productIds);
+		//iapRequestAdapter.Call ("requestCheckPurchasability", true, appId, productIds); // UI노출 없이 Background로만 진행
 	}
 
 	public void RequestSubtractPoints() 
@@ -136,8 +151,8 @@ public class IapSample : MonoBehaviour {
 		// (4) productIds
 		// ----------------------------------
 		string[] productIds = {"0910024112"};
-		iapRequestAdapter.Call ("requestChangeProductProperties", false, "subtract_points", "OA00679020", productIds);
-		//iapRequestAdapter.Call ("requestChangeProductProperties", true, "subtract_points", "OA00679020", productIds); // UI노출 없이 Background로만 진행
+		iapRequestAdapter.Call ("requestChangeProductProperties", false, "subtract_points", appId, productIds);
+		//iapRequestAdapter.Call ("requestChangeProductProperties", true, "subtract_points", appId, productIds); // UI노출 없이 Background로만 진행
 	}
 
 	public void RequestCancelSubscription() 
@@ -153,8 +168,8 @@ public class IapSample : MonoBehaviour {
 		// (4) productIds
 		// ----------------------------------
 		string[] productIds = {"0910042744"};
-		iapRequestAdapter.Call ("requestChangeProductProperties", false, "cancel_subscription", "OA00697454", productIds);
-		//iapRequestAdapter.Call ("requestChangeProductProperties", true, "cancel_subscription", "OA00697454", productIds); // UI노출 없이 Background로만 진행
+		iapRequestAdapter.Call ("requestChangeProductProperties", false, "cancel_subscription", appId, productIds);
+		//iapRequestAdapter.Call ("requestChangeProductProperties", true, "cancel_subscription", appId, productIds); // UI노출 없이 Background로만 진행
 	}
 
 
@@ -208,7 +223,7 @@ public class IapSample : MonoBehaviour {
 		// (4) tId
 		// (5) bpInfo
 		// ----------------------------------
-		iapRequestAdapter.Call ("requestPayment", "OA00679020", "0910024112", "UNITY결제", "TID_0123", "BPINFO_0123");
+		iapRequestAdapter.Call ("requestPayment", appId, "0910024112", "UNITY결제", "TID_0123", "BPINFO_0123");
 	}
 
 	public void VerifyReceipt() 
@@ -243,7 +258,7 @@ public class IapSample : MonoBehaviour {
 		Debug.Log ("--------------------------------------------------------");
 
 		// Try ReceiptVerification
-		iapRequestAdapter.Call ("verifyReceipt", "OA00679020", data.result.txid, data.result.receipt);
+		iapRequestAdapter.Call ("verifyReceipt", appId, data.result.txid, data.result.receipt);
 	}
 
 	public void PaymentError(string message) 
