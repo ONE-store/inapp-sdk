@@ -1,7 +1,7 @@
 
 > 인앱 결제 `github` 업로드
 >> 1. 원스토어 인앱결제SDK와 가이드를 깃허브에 동시 업데이트 합니다. 
->> 1. [원스토어 개발자센터](http://dev.onestore.co.kr/devpoc/reference/view)를 통해서도 동일한 내용을 확인할 수 있습니다. 
+>> 1. [원스토어 개발자센터](http://dev.onestore.co.kr/devpoc/reference/view/Apps)를 통해서도 동일한 내용을 확인할 수 있습니다. 
 
 
 # ONE 스토어 인앱결제란?
