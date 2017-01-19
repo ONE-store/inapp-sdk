@@ -1,0 +1,122 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.library'
+
+ext {
+    userDir = project.projectDir.absolutePath
+    mainDir = userDir + "/src/main/"
+    javaDir = mainDir + "java/"
+    aidlDir = mainDir + "aidl/"
+    aarDir = userDir + "/build/outputs/aar/"
+}
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile files('libs/iap_plugin_v16.02.00_20161010.jar')
+    compile files('libs/classes.jar')
+}
+
+
+/**
+ *
+ * def
+ *
+ */
+
+def moveFolder(srcFolderPath, dstFolderPath) {
+    File folder = new File(srcFolderPath)
+    if (folder.exists()) {
+        GFileUtils.moveDirectory(new File(srcFolderPath), new File(dstFolderPath));
+    }
+}
+
+def getStartedTaskName() {
+    List<String> tasks = getGradle().gradle.getStartParameter().getTaskNames()
+    return tasks.get(0)
+}
+
+def getBuildTimestamp() {
+    def dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss")
+    dateFormat.setTimeZone(TimeZone.getDefault())
+    return dateFormat.format(new Date())
+}
+
+def getBuildDaystamp() {
+    def dateFormat = new SimpleDateFormat("yyyyMMdd")
+    dateFormat.setTimeZone(TimeZone.getDefault())
+    return dateFormat.format(new Date())
+}
+
+
+/**
+ *
+ * Task
+ *
+ */
+
+task changeZip(type: Copy) {
+    File folder = new File(aarDir)
+
+    String preName = "library-release.aar"
+    String postName = "library-release.zip"
+
+    include preName
+    rename (preName, postName)
+
+    from folder.canonicalPath
+    into folder.canonicalPath
+}
+
+task unzip(type: Copy) {
+    File zipFile = new File(aarDir + "library-release.zip")
+    File distFolder = new File(aarDir + "/dist");
+
+    from zipTree(zipFile)
+    into distFolder
+}
+
+task changeJarLibName(type: Copy) {
+    File srcFolder = new File(aarDir + "/dist");
+    File dstFolder = new File(aarDir)
+
+    String preName = "classes.jar"
+    String postName = "unity_adaptor_" + "v${android.defaultConfig.versionName}" + "_" + getBuildDaystamp() + ".jar"
+
+    include preName
+    rename (preName, postName)
+
+    from srcFolder.canonicalPath
+    into dstFolder.canonicalPath
+}
+
+
+changeZip.mustRunAfter assembleRelease
+unzip.mustRunAfter changeZip
+changeJarLibName.mustRunAfter unzip
+
+/**
+ *
+ * Relase Build Task
+ *
+ */
+task buildUnityAdaptorJar(dependsOn: [assembleRelease, changeZip, unzip, changeJarLibName])
