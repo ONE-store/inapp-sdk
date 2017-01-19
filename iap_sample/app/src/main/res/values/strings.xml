@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IapApiSample</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_command_background">CommandInBg</string>
+    <string name="title_command">Command</string>
+    <string name="title_payment">Payment</string>
+    <string name="title_appid">AppId: </string>
+    <string name="title_productid">ProductId: </string>
+    <string name="title_tid">TID: </string>
+    <string name="title_productname">ProductName: </string>
+    <string name="title_bpinfo">BP Info: </string>
+    <string name="edit_product_hint">delimiter \',\'</string>
+    <string name="btn_payment_execute">sendPaymentRequest</string>
+    <string name="title_method">Method: </string>
+    <string name="title_app">AppId: </string>
+    <string name="title_product">ProductId: </string>
+    <string name="title_action">Action: </string>
+    <string name="spinner_method">Choose a method</string>
+    <string name="btn_query_execute">Query Request</string>
+    <string name="btn_login_execute">login Request</string>
+
+    <string-array name="methods">
+        <item>request_purchase_history</item>
+        <item>request_product_info</item>
+        <item>check_purchasability</item>
+        <item>change_product_properties</item>
+    </string-array>
+
+    <string name="spinner_app_id">Choose a AppId</string>
+    <string name="spinner_product_id">Choose a ProductId</string>
+
+    <string name="spinner_action">Choose a action</string>
+
+    <string-array name="actions">
+        <item>cancel_subscription</item>
+        <item>subtract_points</item>
+    </string-array>
+
+</resources>

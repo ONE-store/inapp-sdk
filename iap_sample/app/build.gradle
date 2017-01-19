@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'signkey01'
+            keyPassword 'signkey01'
+            storeFile file('../signkey01.jks')
+            storePassword 'signkey01'
+        }
+    }
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+    defaultConfig {
+        applicationId "com.skplanet.dev.guide"
+        minSdkVersion 9
+        targetSdkVersion 23
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_7
+            targetCompatibility JavaVersion.VERSION_1_7
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+
+dependencies {
+    compile 'com.android.support:support-v4:23.1.1'
+    compile files('libs/iap_plugin_v16.02.00_20161010.jar')
+    //compile(name:'iap_plugin_v16.01.00', ext:'aar')
+}
