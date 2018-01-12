@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +29,17 @@ public class ExplicitPaymentFragment extends Fragment implements View.OnClickLis
     private EditText mAid;
     private EditText mPid;
     private EditText mPname;
-
+    private EditText mBpInfo;
+    private EditText mTid;
+    private EditText mGameUserId;
+    private Spinner mPromotionApplicable;
+	
     private Button mExecute;
     private TextView mLog;
 
     private String mRequestId;
+
+    private boolean mPromotion = false;
 
     private IapPlugin mPlugin;
     private IapPlugin.AbsRequestCallback mAbsRequestCallback = new IapPlugin.AbsRequestCallback() {
@@ -79,16 +87,37 @@ public class ExplicitPaymentFragment extends Fragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.payment, container, false);
 
+        mPromotionApplicable = (Spinner) v.findViewById(R.id.spinner_promition_applicable);
         mAid = (EditText) v.findViewById(R.id.edit_appid);
         mPid = (EditText) v.findViewById(R.id.edit_product);
+        mTid = (EditText) v.findViewById(R.id.edit_tid);
+        mBpInfo = (EditText) v.findViewById(R.id.edit_bpinfo);
         mPname = (EditText) v.findViewById(R.id.edit_productname);
         mExecute = (Button) v.findViewById(R.id.btn_payment_request);
         mLog = (TextView) v.findViewById(R.id.logview);
+        mGameUserId = (EditText) v.findViewById(R.id.edit_game_user_id);
 
         mExecute.setOnClickListener(this);
 
         mAid.setFilters(new InputFilter[] {filterAlphaNum});
         mPid.setFilters(new InputFilter[] {filterAlphaNum});
+        mPromotionApplicable.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getSelectedItem().toString();
+                if ("Y".equals(item)) {
+                    mPromotion = true;
+                    return;
+                }
+                mPromotion = false;
+                mPromotionApplicable.setSelection(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return v;
     }
@@ -125,21 +154,28 @@ public class ExplicitPaymentFragment extends Fragment implements View.OnClickLis
     }
 
     private String requestPayment() {
-        String tmp = mPname.getText().toString();
-        if (TextUtils.isEmpty(tmp)) {
-            PaymentParams params = new PaymentParams.Builder(mAid.getText().toString(), mPid.getText().toString())
-                    .addTid("AA12345")
-                    .addBpInfo("Test한글")
-                    .build();
-            return mPlugin.sendPaymentRequest(mAbsRequestCallback, params);
-        } else {
-            PaymentParams params = new PaymentParams.Builder(mAid.getText().toString(), mPid.getText().toString())
-                    .addProductName(tmp)
-                    .addTid("AA12345")
-                    .addBpInfo("Test한글")
-                    .build();
-            return mPlugin.sendPaymentRequest(mAbsRequestCallback, params);
+        String aid = mAid.getText().toString().trim();
+        String pid = mPid.getText().toString().trim();
+        String tid = mTid.getText().toString().trim();
+        String bpInfo = mBpInfo.getText().toString().trim();
+        String productName = mPname.getText().toString().trim();
+        String gameUserId = mGameUserId.getText().toString().trim();
+
+        PaymentParams.Builder builder = new PaymentParams.Builder(aid, pid);
+        builder.addTid(tid);
+        builder.addBpInfo(bpInfo);
+
+        if (!TextUtils.isEmpty(productName)) {
+            builder.addProductName(productName);
         }
+
+        if (!TextUtils.isEmpty(gameUserId)) {
+            builder.addGameUserId(gameUserId).
+                    addPromotionApplicable(mPromotion);
+        }
+
+        PaymentParams params = builder.build();
+        return mPlugin.sendPaymentRequest(mAbsRequestCallback, params);
     }
 
     private InputFilter filterAlphaNum = new InputFilter() {

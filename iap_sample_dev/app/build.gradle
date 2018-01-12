@@ -10,10 +10,10 @@ android {
         }
     }
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '26.0.0'
     defaultConfig {
         applicationId "com.onestore.dev.guide.iapsample"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 23
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_7
@@ -46,7 +46,7 @@ dependencies {
 task convertReleaseName << {
     String apkPath = getProjectDir().absolutePath + "/build/outputs/apk/"
     File src = new File(apkPath + "app-release.apk")
-    File dst = new File(apkPath + "inapp_sample_D_v16.03.00.apk")
+    File dst = new File(apkPath + "inapp_sample_D_v16.04.00.apk")
     src.renameTo(dst)
 }
 

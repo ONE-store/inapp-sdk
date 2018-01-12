@@ -45,13 +45,19 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 
 public class ImplicitPaymentFragment extends Fragment implements View.OnClickListener {
+    private Spinner mPromotionApplicable;
     private EditText mAid;
     private EditText mPid;
     private EditText mPname;
+    private EditText mBpInfo;
+    private EditText mTid;
+    private EditText mGameUserId;
+
     private Button mExecute;
     private TextView mLog;
 
     private String mRequestId;
+    private boolean mPromotion = false;
 
     private IapPlugin mPlugin;
 
@@ -60,16 +66,37 @@ public class ImplicitPaymentFragment extends Fragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.payment, container, false);
 
+        mPromotionApplicable = (Spinner) v.findViewById(R.id.spinner_promition_applicable);
         mAid = (EditText) v.findViewById(R.id.edit_appid);
         mPid = (EditText) v.findViewById(R.id.edit_product);
+        mTid = (EditText) v.findViewById(R.id.edit_tid);
+        mBpInfo = (EditText) v.findViewById(R.id.edit_bpinfo);
         mPname = (EditText) v.findViewById(R.id.edit_productname);
         mExecute = (Button) v.findViewById(R.id.btn_payment_request);
         mLog = (TextView) v.findViewById(R.id.logview);
+        mGameUserId = (EditText) v.findViewById(R.id.edit_game_user_id);
 
         mExecute.setOnClickListener(this);
 
         mAid.setFilters(new InputFilter[] {filterAlphaNum});
         mPid.setFilters(new InputFilter[] {filterAlphaNum});
+        mPromotionApplicable.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getSelectedItem().toString();
+                if ("Y".equals(item)) {
+                    mPromotion = true;
+                    return;
+                }
+                mPromotion = false;
+                mPromotionApplicable.setSelection(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return v;
     }
@@ -116,15 +143,17 @@ public class ImplicitPaymentFragment extends Fragment implements View.OnClickLis
     }
 
     private boolean requestPayment() {
-
-        final String appId = mAid.getText().toString().trim().toUpperCase(Locale.getDefault());
+        final String aId = mAid.getText().toString().trim().toUpperCase(Locale.getDefault());
         final String pId = mPid.getText().toString().trim();
-        final String productName = mPname.getText().toString();
+        final String tId = mTid.getText().toString().trim();
+        final String bpInfo = mBpInfo.getText().toString().trim();
+        final String productName = mPname.getText().toString().trim();
+        final String gameUserId = mGameUserId.getText().toString().trim();
 
         mLog.setText("");
 
-        Bundle req = mPlugin.sendPaymentRequest(appId, pId, productName, null, null,
-                new IapPlugin.RequestCallback() {
+        Bundle req = mPlugin.sendPaymentRequest(aId, pId, productName, tId, bpInfo,
+                gameUserId, mPromotion, new IapPlugin.RequestCallback() {
 
                     @Override
                     public void onResponse(IapResponse data) {

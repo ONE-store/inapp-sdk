@@ -79,6 +79,40 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
+                    android:text="@string/title_tid" />
+
+                <EditText
+                    android:id="@+id/edit_tid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1" >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/title_bpinfo" />
+
+                <EditText
+                    android:id="@+id/edit_bpinfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1" >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
                     android:text="@string/title_productname" />
 
                 <EditText
@@ -86,6 +120,42 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1" >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/title_game_user_id" />
+
+                <EditText
+                    android:id="@+id/edit_game_user_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1" >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/title_promotion_applicable" />
+
+                <Spinner
+                    android:id="@+id/spinner_promition_applicable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:entries="@array/promotion"
+                    android:prompt="@string/spinner_select_promotion" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,7 +177,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_margin="1dp"
-            android:background="@drawable/border" />
+            android:background="@drawable/border"
+            android:textIsSelectable="true"/>
     </LinearLayout>
 
 </ScrollView>
