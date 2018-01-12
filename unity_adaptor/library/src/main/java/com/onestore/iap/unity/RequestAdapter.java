@@ -7,9 +7,8 @@ import com.skplanet.dodo.ProcessType;
 
 /**
  * Created by layn01 on 9/12/16.
- *
+ * <p>
  * Unity에서 함수를 호출하여, IapPluin 실제적인 요청을 한다
- *
  */
 public class RequestAdapter {
 
@@ -31,11 +30,11 @@ public class RequestAdapter {
 
     public RequestAdapter(String callbackClassName, Context context, boolean isDebug) {
         this.callbackClassName = callbackClassName;
-        iapPlugin = IapPlugin.getPlugin(context, (isDebug?IapPlugin.DEVELOPMENT_MODE:IapPlugin.RELEASE_MODE));
+        iapPlugin = IapPlugin.getPlugin(context, (isDebug ? IapPlugin.DEVELOPMENT_MODE : IapPlugin.RELEASE_MODE));
     }
 
-    public void requestPayment(String appId, String productId, String productName, String tId, String bpInfo) {
-        iapPlugin.sendPaymentRequest(appId, productId, productName, tId, bpInfo,
+    public void requestPayment(String appId, String productId, String productName, String tId, String bpInfo, String gameUserId, boolean promotionApplicable) {
+        iapPlugin.sendPaymentRequest(appId, productId, productName, tId, bpInfo, gameUserId, promotionApplicable,
                 new RequestCallbackAdapter(callbackClassName, CB_METHOD_NAME_PYAMENT_RESPONSE, CB_METHOD_NAME_PAYMENT_ERROR));
     }
 
@@ -46,22 +45,22 @@ public class RequestAdapter {
 
     public void requestPurchaseHistory(boolean backgroundOnly, String appId, String[] productIds) {
         iapPlugin.sendCommandPurchaseHistory(new RequestCallbackAdapter(callbackClassName, CB_METHOD_NAME_COMMAND_RESPONSE, CB_METHOD_NAME_COMMAND_ERROR),
-                (backgroundOnly?ProcessType.BACKGROUND_ONLY:ProcessType.FOREGROUND_IF_NEEDED), appId, productIds);
+                (backgroundOnly ? ProcessType.BACKGROUND_ONLY : ProcessType.FOREGROUND_IF_NEEDED), appId, productIds);
     }
 
     public void requestProductInfo(boolean backgroundOnly, String appId) {
         iapPlugin.sendCommandProductInfo(new RequestCallbackAdapter(callbackClassName, CB_METHOD_NAME_COMMAND_RESPONSE, CB_METHOD_NAME_COMMAND_ERROR),
-                (backgroundOnly?ProcessType.BACKGROUND_ONLY:ProcessType.FOREGROUND_IF_NEEDED), appId);
+                (backgroundOnly ? ProcessType.BACKGROUND_ONLY : ProcessType.FOREGROUND_IF_NEEDED), appId);
     }
 
     public void requestCheckPurchasability(boolean backgroundOnly, String appId, String[] productIds) {
         iapPlugin.sendCommandCheckPurchasability(new RequestCallbackAdapter(callbackClassName, CB_METHOD_NAME_COMMAND_RESPONSE, CB_METHOD_NAME_COMMAND_ERROR),
-                (backgroundOnly?ProcessType.BACKGROUND_ONLY:ProcessType.FOREGROUND_IF_NEEDED), appId, productIds);
+                (backgroundOnly ? ProcessType.BACKGROUND_ONLY : ProcessType.FOREGROUND_IF_NEEDED), appId, productIds);
     }
 
     public void requestChangeProductProperties(boolean backgroundOnly, String action, String appId, String[] productIds) {
         iapPlugin.sendCommandChangeProductProperties(new RequestCallbackAdapter(callbackClassName, CB_METHOD_NAME_COMMAND_RESPONSE, CB_METHOD_NAME_COMMAND_ERROR),
-                (backgroundOnly?ProcessType.BACKGROUND_ONLY:ProcessType.FOREGROUND_IF_NEEDED), appId, action, productIds);
+                (backgroundOnly ? ProcessType.BACKGROUND_ONLY : ProcessType.FOREGROUND_IF_NEEDED), appId, action, productIds);
     }
 
     public void exit() {

@@ -11,14 +11,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    compile files('libs/iap_plugin_v16.03.00_20161123.jar')
+    compile files('libs/iap_plugin_v16.04.00_20180112.jar')
     compile files('libs/classes.jar')
 }
 
