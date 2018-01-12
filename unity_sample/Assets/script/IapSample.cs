@@ -207,8 +207,10 @@ public class IapSample : MonoBehaviour {
 		// (3) proudtName
 		// (4) tId
 		// (5) bpInfo
+		// (6) gameuserId
+		// (7) promotionApplicable
 		// ----------------------------------
-		iapRequestAdapter.Call ("requestPayment", "OA00679020", "0910024112", "UNITY결제", "TID_0123", "BPINFO_0123");
+		iapRequestAdapter.Call ("requestPayment", "OA00679020", "0910024112", "UNITY결제", "TID_0123", "BPINFO_0123" , "", false);
 	}
 
 	public void VerifyReceipt() 
