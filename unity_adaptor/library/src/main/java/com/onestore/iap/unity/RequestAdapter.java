@@ -33,6 +33,11 @@ public class RequestAdapter {
         iapPlugin = IapPlugin.getPlugin(context, (isDebug ? IapPlugin.DEVELOPMENT_MODE : IapPlugin.RELEASE_MODE));
     }
 
+    public void requestPayment(String appId, String productId, String productName, String tId, String bpInfo) {
+        iapPlugin.sendPaymentRequest(appId, productId, productName, tId, bpInfo,
+                new RequestCallbackAdapter(callbackClassName, CB_METHOD_NAME_PYAMENT_RESPONSE, CB_METHOD_NAME_PAYMENT_ERROR));
+    }
+
     public void requestPayment(String appId, String productId, String productName, String tId, String bpInfo, String gameUserId, boolean promotionApplicable) {
         iapPlugin.sendPaymentRequest(appId, productId, productName, tId, bpInfo, gameUserId, promotionApplicable,
                 new RequestCallbackAdapter(callbackClassName, CB_METHOD_NAME_PYAMENT_RESPONSE, CB_METHOD_NAME_PAYMENT_ERROR));
