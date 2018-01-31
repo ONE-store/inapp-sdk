@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using IapResponse;
 using IapVerifyReceipt;
@@ -207,10 +207,11 @@ public class IapSample : MonoBehaviour {
 		// (3) proudtName
 		// (4) tId
 		// (5) bpInfo
-		// (6) gameuserId
-		// (7) promotionApplicable
+		// (6) gameuserId 프로모션 중복 참여 방지 기능 (16.04 추가)사용시 주석 처리된 부분 사용
+		// (7) promotionApplicable 프로모션 중복 참여 방지 기능 (16.04 추가)사용시 주석 처리된 부분 사용
 		// ----------------------------------
-		iapRequestAdapter.Call ("requestPayment", "OA00679020", "0910024112", "UNITY결제", "TID_0123", "BPINFO_0123" , "", false);
+		iapRequestAdapter.Call ("requestPayment", "OA00679020", "0910024112", "UNITY결제", "TID_0123", "BPINFO_0123");
+             //iapRequestAdapter.Call ("requestPayment", "OA00679020", "0910024112", "UNITY결제", "TID_0123", "BPINFO_0123" , "", false);
 	}
 
 	public void VerifyReceipt() 
