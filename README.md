@@ -1,7 +1,7 @@
 
 > 인앱 결제 `github` 업로드
 >> 1. 원스토어 인앱결제SDK와 가이드를 깃허브에 동시 업데이트 합니다. 
->> 1. [원스토어 개발자센터](http://dev.onestore.co.kr/devpoc/reference/view/Tools_IAP)를 통해서도 동일한 내용을 확인할 수 있습니다. 
+>> 1. [원스토어 개발자센터](https://dev.onestore.net)를 통해서도 동일한 내용을 확인할 수 있습니다. 
 
 
 # ONE스토어 인앱결제란?
@@ -18,19 +18,14 @@ IAP 모듈은 IAP SDK(In-App Purchase Software Development Kit)라는 java 개�
 # 개발자 가이드 
 
 - [위키 페이지](https://github.com/ONE-store/inapp-sdk/wiki)
-- [개발자센터](http://dev.onestore.co.kr/devpoc/reference/view/Tools_IAP)
+- [개발자센터](https://dev.onestore.net)
 
 
 # 권장 개발 환경
 
 안드로이드용 애플리케이션에 IAP SDK를 적용하려면 다음과 같은 개발 환경이 필요하다.
 
-* Android 2.3 이상 버전(API 버전 9 이상)
-* [Java SDK 1.6 버전](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [Android studio 2.0 이상 버전](https://developer.android.com/studio/index.html)
-
->* Eclipse 에서는 아래 개발환경을 권장합니다.
-	* [Eclipse IDE for Java Developers](http://www.eclipse.org/downloads)
-	* [ADT Plug-in for Eclipse 15 버전 이상](http://developer.android.com/sdk/eclipse-adt.html)
-
+* Android 4.1 이상 버전(API 버전 16 이상)
+* [Java SDK 11 버전](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [Android Studio Arctic Fox(2020.3.1)](https://developer.android.com/studio/index.html)
 
